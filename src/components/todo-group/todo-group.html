@@ -1,0 +1,14 @@
+<div *ngIf="todoGroups.length > 0; else noTodos">
+    <ion-list no-lines *ngFor="let todoGroup of todoGroups | todogroupsort: todoListFilter" class="todo-group" padding>
+        <ion-list-header>
+            <h2>{{ todoGroup.key }}</h2>
+        </ion-list-header>
+        <todo *ngFor="let todo of todoGroup.todos | todosort: todoListFilter" [todo]="todo" (todoDoneToggle)="handleDoneToggle( $event )" (todoTap)="handleTap( $event )" (todoPress)="handlePress( $event )">
+        </todo>
+    </ion-list>
+</div>
+<ng-template #noTodos>
+    <div text-center>
+        <p color="light">No tasks yet. <br>Do what you want.</p>
+    </div>
+</ng-template>

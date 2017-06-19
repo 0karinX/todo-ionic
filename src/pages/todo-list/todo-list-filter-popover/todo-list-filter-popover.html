@@ -1,0 +1,44 @@
+<ion-list no-lines radio-group class="popover-page" (ionChange)="filterTodo( $event )">
+    <ion-list-header>
+        Show Options:
+    </ion-list-header>
+    <ion-item>
+        <ion-label>Show</ion-label>
+        <ion-select [(ngModel)]="filterOpts.visible" (ionChange)="filterTodo( $event )">
+            <ion-option [value]="visibleTodoOptions.ALL">All</ion-option>
+            <ion-option [value]="visibleTodoOptions.DONE">Done</ion-option>
+            <ion-option [value]="visibleTodoOptions.NOT_DONE">Not Done</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label>Group by</ion-label>
+        <ion-select [(ngModel)]="filterOpts.groupingOptions" (ionChange)="filterTodo( $event )">
+            <ion-option [value]="groupingOptions.INTENDED_DATE">Intended Date</ion-option>
+            <ion-option [value]="groupingOptions.DEADLINE">Deadline</ion-option>
+            <ion-option [value]="groupingOptions.STATUS">Status</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label>Order</ion-label>
+        <ion-select [(ngModel)]="filterOpts.groupingOrder" (ionChange)="filterTodo( $event )">
+            <ion-option [value]="orderOptions.ASC">Asc</ion-option>
+            <ion-option [value]="orderOptions.DESC">Desc</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label>Sort by</ion-label>
+        <ion-select [(ngModel)]="filterOpts.sortKey" (ionChange)="filterTodo( $event )">
+            <ion-option [value]="sortKeyOptions.INTENDED_DATE">Intended Date</ion-option>
+            <ion-option [value]="sortKeyOptions.DEADLINE">Deadline</ion-option>
+            <ion-option [value]="sortKeyOptions.NAME">Name</ion-option>
+            <ion-option [value]="sortKeyOptions.STATUS">Status</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label>Order</ion-label>
+        <ion-select [(ngModel)]="filterOpts.sortOrder" (ionChange)="filterTodo( $event )">
+            <ion-option [value]="orderOptions.ASC">Asc</ion-option>
+            <ion-option [value]="orderOptions.DESC">Desc</ion-option>
+        </ion-select>
+    </ion-item>
+</ion-list>

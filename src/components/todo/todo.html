@@ -1,0 +1,19 @@
+<!-- Generated template for the TodoComponent component -->
+<ion-item (press)="handlePress( todo )" class="todo-item">
+    <ion-icon large item-left [name]=" !todo.dateCompleted ? 'md-checkmark-circle-outline': 'md-checkmark-circle'" [ngClass]="{done: todo.dateCompleted}" (tap)="handleDoneToggle()"></ion-icon>
+
+    <div (tap)="handleTap()">
+        <h2 class="todo-name">{{ todo.name }}</h2>
+        <!--<h5 item-right>{{ todo.description }}</h5>-->
+        <p class="date-details">
+            <span float-left *ngIf="todo.intendedDate">
+              <span class="date-details-marker"> Start: </span>
+            <span class="date-details"> {{ todo.intendedDate | date:'MMM dd, yyyy' }} </span>
+            </span>
+
+            <span float-right *ngIf="todo.deadline">
+              <span class="date-details-marker"> End: </span>
+            <span class="date-details"> {{ todo.deadline | date:'MMM dd, yyyy'}} </span>
+            </span>
+    </div>
+</ion-item>

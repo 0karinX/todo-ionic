@@ -1,14 +1,45 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            Ionic Blank
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+    <div padding>
+        <ion-segment>
+            <ion-segment-button value="kittens">
+                Past
+            </ion-segment-button>
+            <ion-segment-button value="puppies">
+                Present
+            </ion-segment-button>
+            <ion-segment-button value="puppies">
+                Future
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+    <div>
+        <ion-list>
+            <ion-item>
+                <ion-thumbnail item-left>
+                    <img src="img/thumbnail-puppy-1.jpg">
+                </ion-thumbnail>
+                <h2>Ruby</h2>
+            </ion-item>
+            ...
+        </ion-list>
+
+        <ion-list>
+            <ion-item>
+                <ion-thumbnail item-left>
+                    <img src="img/thumbnail-kitten-1.jpg">
+                </ion-thumbnail>
+                <h2>Luna</h2>
+            </ion-item>
+            ...
+        </ion-list>
+    </div>
 </ion-content>

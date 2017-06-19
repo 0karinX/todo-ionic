@@ -1,0 +1,27 @@
+$todo-done-color: green;
+$date-details-marker-color: #878787;
+ion-icon.done {
+    color: $todo-done-color;
+}
+
+.todo-name {
+    font-weight: 300;
+}
+
+.show-what-section {
+    text-align: center;
+    padding: 0px;
+}
+
+.date-details-marker {
+    color: $date-details-marker-color;
+    font-size: x-small;
+}
+
+.date-details {
+    font-size: small;
+}
+
+div.main-todo-container {
+    min-height: 100%;
+}
