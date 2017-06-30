@@ -1,3 +1,4 @@
+import { Events } from 'ionic-angular';
 import { Todo } from './../../app/todo/todo';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
@@ -25,19 +26,20 @@ export class TodoComponent {
   @Output()
   todoPress: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
+  constructor(private _eventsCtrl: Events) {
 
   }
 
   handleDoneToggle() {
-    this.todoDoneToggle.emit( this.todo );
+    //this.todoDoneToggle.emit( this.todo );
+    this._eventsCtrl.publish( "todo:doneToggle", this.todo );
   }
 
   handleTap() {
-    this.todoTap.emit( this.todo );
+    this._eventsCtrl.publish( "todo:tap", this.todo );
   }
 
   handlePress() {
-    this.todoPress.emit( this.todo );
+    this._eventsCtrl.publish( "todo:press", this.todo );
   }
 }

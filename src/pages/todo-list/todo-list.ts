@@ -1,3 +1,4 @@
+import { TodoTimeFrameComponent } from './../../components/todo-time-frame/todo-time-frame';
 import { TodoListFilter } from './../../app/todo/todo-filter/todo-list-filter';
 import { TodoListFilterPopover } from './todo-list-filter-popover/todo-list-filter.popover';
 import { TodoModalPage } from './todo-modal-page/todo-modal-page';
@@ -5,7 +6,7 @@ import { CREATE_TODO, UPDATE_TODO, DELETE_TODO, UPDATE_TODO_FILTER } from './../
 import { AppState } from './../../app/app.state';
 import { TodoServiceProvider } from './../../providers/todo-service/todo-service';
 import { Todo } from './../../app/todo/todo';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { NavController, ModalController, ActionSheetController, AlertController, Events, PopoverController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -25,6 +26,15 @@ import 'rxjs/add/operator/distinctUntilChanged';
 })
 export class TodoListPage {
 
+  @ViewChild('pastFrame')
+  public pastFrame: TodoTimeFrameComponent;
+
+  @ViewChild('presentFrame')
+  public presentFrame: TodoTimeFrameComponent;
+
+  @ViewChild('futureFrame')
+  public futureFrame: TodoTimeFrameComponent;
+
   public todos;
   public todoListFilter: TodoListFilter;
   public todoTimeframe = TodoTimeframeEnum;
@@ -42,6 +52,7 @@ export class TodoListPage {
               ) {
 
       this.todos = this._todoStore.select('todos');
+
   }
 
   ngOnInit() {
@@ -49,11 +60,11 @@ export class TodoListPage {
     this._todoStore.select('todoListFilter')
                       .distinctUntilChanged()
                       .subscribe( ( filter: TodoListFilter ) => {
-                                                                  console.log("TODO LIST SUB");
                                                                   this.todoListFilter = filter;
-                                                                  // this.todoFilterModeFriendlyName = todoFilterByDateToFriendlyName(filter.dateFilter);
                                                                 });
     this.subscribeToGlobalTodoEvents();
+
+
   }
 
   subscribeToGlobalTodoEvents(): void {
@@ -67,8 +78,19 @@ export class TodoListPage {
     });
 
     this.events.subscribe('todo:filter', ( filterOpts: TodoListFilter ) => {
-      console.log('firing todo:filter')
       this._todoStore.dispatch({type: UPDATE_TODO_FILTER, payload: filterOpts});
+    });
+
+    this.events.subscribe('todo:doneToggle', ( todo: Todo ) => {
+      this.toggleDone( todo );
+    });
+
+    this.events.subscribe('todo:tap', ( todo: Todo ) => {
+      this.handleTap( todo );
+    });
+
+    this.events.subscribe('todo:press', ( todo: Todo ) => {
+       this.handlePress( todo );
     });
   }
 

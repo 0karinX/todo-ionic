@@ -1,3 +1,4 @@
+import { getPastTodos, getPresentTodos, getFutureTodos } from './todo-timeframe-classifier';
 import { Todo } from './../../app/todo/todo';
 import { Pipe, PipeTransform } from '@angular/core';
 import { TodoTimeframeEnum } from './../../app/todo/todo-time-frame-enum';
@@ -20,41 +21,17 @@ export class TodoTimeframePipe implements PipeTransform {
 
       switch ( todoTimeframeEnum ) {
         case TodoTimeframeEnum.PAST:
-          return this.getPastTodos( todos );
+          return getPastTodos( todos );
 
 
         case TodoTimeframeEnum.PRESENT:
-          return this.getPresentTodos( todos );
+          return getPresentTodos( todos );
 
         case TodoTimeframeEnum.FUTURE:
-          return this.getFutureTodos( todos );
+          return getFutureTodos( todos );
 
         default:
           return todos;
     }
-  }
-
-  getPresentTodos = todos => {
-    const today = moment().format('YYYY-MM-DD');
-    let filtered = todos.filter( todo => {
-      return (!todo.intendedDate || (moment( todo.intendedDate ).format('YYYY-MM-DD') === today ))
-    });
-    return filtered;
-  }
-
-  getPastTodos = todos => {
-    const today = moment( new Date() ).format('YYYY-MM-DD');
-    return todos.filter( todo => (moment( todo.intendedDate ).isBefore( today )));
-  }
-
-  getFutureTodos = todos => {
-    const today = moment( new Date() ).format('YYYY-MM-DD');
-    console.log(today);
-
-      return todos.filter( todo => {
-
-        console.log(moment( todo.intendedDate).format('YYYY-MM-DD' ) + " is after " + today + " =  " + (moment( todo.intendedDate).format('YYYY-MM-DD' ) > today + ""));
-        return todo.intendedDate && (moment( todo.intendedDate).format('YYYY-MM-DD' ) > ( today ))
-    });
   }
 }

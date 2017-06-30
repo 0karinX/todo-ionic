@@ -23,15 +23,6 @@ export class TodoGroupComponent {
   @Input()
   todoListFilter: TodoListFilter;
 
-  @Output()
-  todoDoneToggle: EventEmitter<any> = new EventEmitter();
-
-  @Output()
-  todoTap: EventEmitter<any> = new EventEmitter();
-
-  @Output()
-  todoPress: EventEmitter<any> = new EventEmitter();
-
   public todoGroups: TodoGroup[];
 
   constructor() {}
@@ -44,18 +35,6 @@ export class TodoGroupComponent {
 
   ngOnChanges() {
     this.todoGroups = this.groupTodo( this.todos, this.todoListFilter.groupingOptions);
-  }
-
-  handleDoneToggle( todo: Todo ) {
-    this.todoDoneToggle.emit( todo );
-  }
-
-  handleTap( todo: Todo ) {
-    this.todoTap.emit( todo );
-  }
-
-  handlePress( todo: Todo ) {
-    this.todoPress.emit( todo );
   }
 
   groupTodo( todos: Todo[], groupingOptions: GroupingOptions): TodoGroup[] {
@@ -101,15 +80,10 @@ export class TodoGroupComponent {
 
     for (var i = 0, len = todos.length; i < len; i++) {
 
-      let deadline = todos[i].deadline;
+      let deadline = todos[i].deadline ? this.formatDateKey( todos[i].deadline ) : "No Deadline";
 
-      if( deadline ) {
-        todoMap[ deadline ] = todoMap[ deadline ] || new TodoGroup( deadline, []);
-        todoMap[ deadline ].todos.push( todos[i] );
-
-      } else {
-        todoMap[ "No Deadline" ].todos.push( todos[i] );
-      }
+      todoMap[ deadline ] = todoMap[ deadline ] || new TodoGroup( deadline, []);
+      todoMap[ deadline ].todos.push( todos[i] );
     }
 
     return this.convertObjectToMap( todoMap );
@@ -147,7 +121,7 @@ export class TodoGroupComponent {
     return todoGroupArray;
   }
 
-  private formatDateKey( strDate): string {
+  private formatDateKey( strDate ): string {
     return moment( strDate ).format( 'MMM DD, YYYY' );
   }
 }

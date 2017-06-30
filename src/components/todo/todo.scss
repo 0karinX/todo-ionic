@@ -1,7 +1,8 @@
 h2.todo-name {
-    font-weight: 500;
+    font-weight: 400;
+    margin-bottom: 5px;
 }
 
-.todo-item {
-    // background: #f7f7f7;
+.todo-item ion-label {
+    margin-top: 0 !important;
 }

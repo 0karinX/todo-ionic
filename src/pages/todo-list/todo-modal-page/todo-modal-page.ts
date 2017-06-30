@@ -17,7 +17,7 @@ dateCreated: 	  string;
 dateCompleted:	string;
 deadline: 		  string;
 intendedDate:   string;
-
+now:            string = moment().format('YYYY-MM-DDTHH:mmZ');
 
 
 todo:         Todo;   //used for update and read-only
@@ -35,6 +35,7 @@ constructor(
 
     if(this.todo)
       this.populateFields( this.todo );
+
   }
 
   dismiss() {
@@ -44,8 +45,6 @@ constructor(
   handleSaveClick(): void {
 
     const eventType: string = this.todo ? 'todo:update' : 'todo:create'; //toggle between create and update events. // todo create an enum of actions.
-
-    console.log(eventType);
 
     if( !this.isReadOnly ) {
       this.events.publish( eventType, this.createTodoFromModalInput() );
@@ -64,6 +63,7 @@ constructor(
       if(!this.todo) { // for new instance
 
         return new Todo(  generateId(),
+                          "jece",
                           this.name,
                           this.description,
                           this.intendedDate,
@@ -91,7 +91,5 @@ constructor(
       this.dateCompleted  = todo.dateCompleted;
       this.dateCreated    = todo.dateCreated;
       this.deadline       = todo.deadline;
-
-      console.log("this.dateCreated -> " + this.dateCreated)
   }
 }

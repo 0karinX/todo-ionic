@@ -14,12 +14,15 @@
         <ion-segment [(ngModel)]="selectedTodoTimeframe">
             <ion-segment-button [value]="todoTimeframe.PAST">
                 Past
+                <pending-todo-counter [todos]="todos | async | todotimeframe: todoTimeframe.PAST"></pending-todo-counter>
             </ion-segment-button>
             <ion-segment-button [value]="todoTimeframe.PRESENT">
                 Present
+                <pending-todo-counter [todos]="todos | async | todotimeframe: todoTimeframe.PRESENT"></pending-todo-counter>
             </ion-segment-button>
             <ion-segment-button [value]="todoTimeframe.FUTURE">
                 Future
+                <pending-todo-counter [todos]="todos | async | todotimeframe: todoTimeframe.FUTURE"></pending-todo-counter>
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
@@ -27,13 +30,13 @@
 
 <ion-content>
     <div class="main-todo-container" [ngSwitch]="selectedTodoTimeframe" (swipe)="handleSwipe( $event )">
-        <todo-time-frame (todoTap)="handleTap( $event )" (todoPress)="handlePress( $event )" (todoDoneToggle)="toggleDone( $event )" [todos]="todos | async | todotimeframe: todoTimeframe.PAST | todovisibile: todoListFilter.visible" [todoTimeframe]="todoTimeframe.PAST"
+        <todo-time-frame #pastFrame (todoTap)="handleTap( $event )" (todoPress)="handlePress( $event )" (todoDoneToggle)="toggleDone( $event )" [todos]="todos | async | todotimeframe: todoTimeframe.PAST | todovisibile: todoListFilter.visible" [todoTimeframe]="todoTimeframe.PAST"
             [todoListFilter]="todoListFilter" *ngSwitchCase="todoTimeframe.PAST">
         </todo-time-frame>
-        <todo-time-frame (todoTap)="handleTap( $event )" (todoPress)="handlePress( $event )" (todoDoneToggle)="toggleDone( $event )" [todos]="todos | async | todotimeframe: todoTimeframe.PRESENT | todovisibile: todoListFilter.visible" [todoTimeframe]="todoTimeframe.PRESENT"
+        <todo-time-frame #presentFrame (todoTap)="handleTap( $event )" (todoPress)="handlePress( $event )" (todoDoneToggle)="toggleDone( $event )" [todos]="todos | async | todotimeframe: todoTimeframe.PRESENT | todovisibile: todoListFilter.visible" [todoTimeframe]="todoTimeframe.PRESENT"
             [todoListFilter]="todoListFilter" *ngSwitchCase="todoTimeframe.PRESENT">
         </todo-time-frame>
-        <todo-time-frame (todoTap)="handleTap( $event )" (todoPress)="handlePress( $event )" (todoDoneToggle)="toggleDone( $event )" [todos]="todos | async | todotimeframe: todoTimeframe.FUTURE | todovisibile: todoListFilter.visible" [todoTimeframe]="todoTimeframe.FUTURE"
+        <todo-time-frame #futureFrame (todoTap)="handleTap( $event )" (todoPress)="handlePress( $event )" (todoDoneToggle)="toggleDone( $event )" [todos]="todos | async | todotimeframe: todoTimeframe.FUTURE | todovisibile: todoListFilter.visible" [todoTimeframe]="todoTimeframe.FUTURE"
             [todoListFilter]="todoListFilter" *ngSwitchCase="todoTimeframe.FUTURE">
         </todo-time-frame>
     </div>

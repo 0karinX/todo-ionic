@@ -167,7 +167,15 @@ syncToRemoteDB(): Observable<any> {
   const subject: Subject<any> = new Subject();
 
   //Remote DB operations
-  this._todoLocalDB.sync(this._todoRemoteDB, {live: true, retry: true})
+  this._todoLocalDB.sync(this._todoRemoteDB,
+        {
+          live: true,
+          retry: true,
+           auth: {
+            username: "nothementoontermonenderr",
+            password: "c26888e30629163ef72b00f3d5ffd2356b37bdfc"
+        }
+      })
       .on('change', function (change) {
         subject.next(change);
         subject.complete();

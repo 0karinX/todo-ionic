@@ -1,7 +1,17 @@
 ion-list-header {
     text-align: center;
+    margin-bottom: 0 !important;
+}
+
+ion-list-header ion-label {
+    margin: 0 8px 0 0 !important;
+}
+
+ion-list-header ion-label p {
+    margin-top: 2px;
+    font-size: small !important;
 }
 
 .todo-group {
-    //background: red;
+    margin-bottom: 0 !important;
 }

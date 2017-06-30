@@ -3,8 +3,8 @@
     <ion-icon large item-left [name]=" !todo.dateCompleted ? 'md-checkmark-circle-outline': 'md-checkmark-circle'" [ngClass]="{done: todo.dateCompleted}" (tap)="handleDoneToggle()"></ion-icon>
 
     <div (tap)="handleTap()">
-        <h2 class="todo-name">{{ todo.name }}</h2>
-        <!--<h5 item-right>{{ todo.description }}</h5>-->
+        <till-deadline-counter [todo]="todo"></till-deadline-counter>
+        <h2 class="todo-name wrap">{{ todo.name }}</h2>
         <p class="date-details">
             <span float-left *ngIf="todo.intendedDate">
               <span class="date-details-marker"> Start: </span>

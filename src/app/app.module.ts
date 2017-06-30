@@ -27,6 +27,8 @@ import { TodoSortPipe } from '../pipes/todo-sort/todo-sort';
 import { TodoshowPipe } from '../pipes/todoshow/todoshow';
 import { TodoGroupComponent } from '../components/todo-group/todo-group';
 import { TodoGroupSortPipe } from '../pipes/todo-group-sort/todo-group-sort';
+import { PendingTodoCounterComponent } from '../components/pending-todo-counter/pending-todo-counter';
+import { TillDeadlineCounterComponent } from '../components/till-deadline-counter/till-deadline-counter';
 
 export const provideTodoLocalDB = () => {
   let todoPouch = new PouchDB( 'todos' );
@@ -56,7 +58,9 @@ export const provideDefaultFilterOpts = () => {
     TodoSortPipe,
     TodoshowPipe,
     TodoGroupComponent,
-    TodoGroupSortPipe
+    TodoGroupSortPipe,
+    PendingTodoCounterComponent,
+    TillDeadlineCounterComponent
   ],
   imports: [
     BrowserModule,
