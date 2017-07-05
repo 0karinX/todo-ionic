@@ -1,19 +1,20 @@
 <!-- Generated template for the TodoComponent component -->
 <ion-item (press)="handlePress( todo )" class="todo-item">
-    <ion-icon large item-left [name]=" !todo.dateCompleted ? 'md-checkmark-circle-outline': 'md-checkmark-circle'" [ngClass]="{done: todo.dateCompleted}" (tap)="handleDoneToggle()"></ion-icon>
-
-    <div (tap)="handleTap()">
-        <till-deadline-counter [todo]="todo"></till-deadline-counter>
-        <h2 class="todo-name wrap">{{ todo.name }}</h2>
-        <p class="date-details">
-            <span float-left *ngIf="todo.intendedDate">
-              <span class="date-details-marker"> Start: </span>
-            <span class="date-details"> {{ todo.intendedDate | date:'MMM dd, yyyy' }} </span>
+    <!--<ion-icon large item-left [name]=" !todo.dateCompleted ? 'md-checkmark-circle-outline': 'md-checkmark-circle'" [ngClass]="{done: todo.dateCompleted}" (tap)="handleDoneToggle()"></ion-icon>-->
+    <div class="done-indicator">
+        <i [class]="!todo.dateCompleted ? 'fa fa-check-circle-o fa-2x pending' : 'fa fa-check-circle fa-2x done'" aria-hidden="true" (tap)="handleDoneToggle()"></i>
+    </div>
+    <div (tap)="handleTap()" class="todo-details">
+        <till-deadline-counter [todo]=" todo "></till-deadline-counter>
+        <h2 class="todo-name wrap ">{{ todo.name }}</h2>
+        <p class="date-details ">
+            <span float-left *ngIf="todo.intendedDate ">
+              <span class="date-details-marker "><i class="fa fa-hourglass-start " aria-hidden="true "></i>: </span>
+            <span class="date-details "> {{ todo.intendedDate | date:'MMM dd, yyyy' }} </span>
             </span>
-
-            <span float-right *ngIf="todo.deadline">
-              <span class="date-details-marker"> End: </span>
-            <span class="date-details"> {{ todo.deadline | date:'MMM dd, yyyy'}} </span>
+            <span *ngIf="todo.deadline" class="deadline-details">
+              <span class="date-details-marker "><i class="fa fa-hourglass-end " aria-hidden="true "></i>: </span>
+            <span class="date-details "> {{ todo.deadline | date:'MMM dd, yyyy'}} </span>
             </span>
     </div>
 </ion-item>

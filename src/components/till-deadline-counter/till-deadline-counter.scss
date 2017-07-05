@@ -2,14 +2,12 @@ till-deadline-counter {
     //border: 1px solid red;
 }
 
-.deadline-counter {
-    float: right;
-}
+.deadline-counter {}
 
 .deadline-counter p {
     opacity: 0.7;
     font-size: small;
     color: map-get($colors, danger);
-    padding: 3px 0 0 0;
-    margin: 0;
+    float: right;
+    margin-right: 15%;
 }

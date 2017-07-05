@@ -1,3 +1,8 @@
+.todo-item {
+    min-height: 100%;
+    position: relative;
+}
+
 h2.todo-name {
     font-weight: 400;
     margin-bottom: 5px;
@@ -5,4 +10,16 @@ h2.todo-name {
 
 .todo-item ion-label {
     margin-top: 0 !important;
+    margin-right: 0 !important;
+}
+
+.todo-details {
+    margin-left: 40px;
+    width: 100%;
+}
+
+.done-indicator {
+    float: left;
+    position: absolute;
+    top: 30%;
 }
