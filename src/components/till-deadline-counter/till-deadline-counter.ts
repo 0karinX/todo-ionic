@@ -1,5 +1,6 @@
+import { countdownThreshold } from './../../app/di.tokens';
 import { Todo } from './../../app/todo/todo';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Inject } from '@angular/core';
 import moment from 'moment';
 
 @Component({
@@ -15,7 +16,7 @@ export class TillDeadlineCounterComponent {
   private timeUpdateTimeout;
   private showCounter:boolean = false;
 
-  constructor() {}
+  constructor(@Inject(countdownThreshold) private _countdownThreshold) {}
 
   ngOnInit() {
     this.assessShowCounter();
@@ -26,7 +27,7 @@ export class TillDeadlineCounterComponent {
   }
 
   computeTimeLeft() {
-    //format will be days:hours:minutes
+    //format will be days:hours:minutes:seconds
 
     let days, hoursRaw, hours, minsRaw, mins, secsRaw, secs, timeDiff;
 
@@ -51,6 +52,10 @@ export class TillDeadlineCounterComponent {
   }
 
   assessShowCounter() {
-    this.showCounter = this.todo.deadline && moment(this.todo.deadline).isAfter(moment());
+
+    const now = moment();
+    this.showCounter = this.todo.deadline
+                       && moment(this.todo.deadline).isAfter(now)
+                       && now.isSameOrAfter(moment(this.todo.deadline).subtract(this._countdownThreshold, 'days'));
   }
 }

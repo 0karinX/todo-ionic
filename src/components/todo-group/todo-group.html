@@ -1,4 +1,4 @@
-<div *ngIf="todoGroups.length > 0; else noTodos">
+<div *ngIf="todoGroups.length > 0; else noTodos" class="todo-group-container">
     <ion-list no-lines *ngFor="let todoGroup of todoGroups | todogroupsort: todoListFilter" class="todo-group" padding>
         <ion-list-header>
             <p>{{ todoGroup.key }}</p>
@@ -8,7 +8,7 @@
     </ion-list>
 </div>
 <ng-template #noTodos>
-    <div text-center>
-        <p color="light">No tasks yet. <br><a>Add One</a></p>
+    <div text-center class="no-todos-section">
+        <p color="light">No tasks yet.<br><br><a (tap)="summonTodoModal()">Add One</a></p>
     </div>
 </ng-template>

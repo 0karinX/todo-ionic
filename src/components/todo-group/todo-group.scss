@@ -4,7 +4,7 @@ ion-list-header {
 }
 
 ion-list-header ion-label {
-    margin: 0 8px 0 0 !important;
+    // margin: 0 8px 0 0 !important;
 }
 
 ion-list-header ion-label p {
@@ -14,4 +14,22 @@ ion-list-header ion-label p {
 
 .todo-group {
     margin-bottom: 0 !important;
+}
+
+.todo-group todo:last-child div.item-inner {
+    border-bottom: none !important;
+}
+
+.no-todos-section {
+    min-height: 100%;
+}
+
+.no-todos-section a {
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.todo-group-container {
+    min-height: 100%;
 }

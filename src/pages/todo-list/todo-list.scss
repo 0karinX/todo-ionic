@@ -20,13 +20,15 @@ $date-details-marker-color: #878787;
 
 .date-details {
     font-size: small;
+    opacity: 0.9;
 }
 
 .deadline-details {
     float: right;
     margin-right: 15%;
+    opacity: 0.9;
 }
 
 div.main-todo-container {
-    //min-height: 100%;
+    min-height: 97%;
 }

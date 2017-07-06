@@ -92,6 +92,10 @@ export class TodoListPage {
     this.events.subscribe('todo:press', ( todo: Todo ) => {
        this.handlePress( todo );
     });
+
+    this.events.subscribe('todo-fab:tap', () => {
+       this.presentModal( null );
+    });
   }
 
   delete( todo: Todo ): void {

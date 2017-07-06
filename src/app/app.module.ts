@@ -1,3 +1,4 @@
+import { MyApp } from './app.component';
 import { TodoListFilter } from './todo/todo-filter/todo-list-filter';
 import { TodoFilterEffectsServiceProvider } from './../providers/todo-filter-service/todo-filter-effects-service';
 import { TodoListFilterPopover } from './../pages/todo-list/todo-list-filter-popover/todo-list-filter.popover';
@@ -12,11 +13,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { todoReducer } from './todo/todo.reducer';
-import { todoLocalDB, defaultFilterOpts, todoRemoteDB } from './di.tokens';
-import { MyApp } from './app.component';
+import { todoLocalDB, defaultFilterOpts, todoRemoteDB, countdownThreshold } from './di.tokens';
 import { TodoServiceProvider } from '../providers/todo-service/todo-service';
-
-import PouchDB from 'pouchdb';
 import { TodoTimeFrameComponent } from '../components/todo-time-frame/todo-time-frame';
 import { TodoComponent } from '../components/todo/todo';
 import { TodoTimeframePipe } from '../pipes/todo-timeframe/todo-timeframe';
@@ -29,6 +27,9 @@ import { TodoGroupComponent } from '../components/todo-group/todo-group';
 import { TodoGroupSortPipe } from '../pipes/todo-group-sort/todo-group-sort';
 import { PendingTodoCounterComponent } from '../components/pending-todo-counter/pending-todo-counter';
 import { TillDeadlineCounterComponent } from '../components/till-deadline-counter/till-deadline-counter';
+
+import PouchDB from 'pouchdb';
+import moment from 'moment';
 
 export const provideTodoLocalDB = () => {
   let todoPouch = new PouchDB( 'todos' );
@@ -91,6 +92,7 @@ export const provideDefaultFilterOpts = () => {
       provide: defaultFilterOpts,
       useFactory: provideDefaultFilterOpts
     },
+    { provide: countdownThreshold, useValue: 7 }, // 7 days
     TodoFilterServiceProvider,
     TodoFilterEffectsServiceProvider
   ]

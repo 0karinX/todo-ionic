@@ -1,3 +1,4 @@
+import { Events } from 'ionic-angular';
 import { TodoGroup } from './../../app/todo/todo-group';
 import { Todo } from './../../app/todo/todo';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
@@ -25,7 +26,7 @@ export class TodoGroupComponent {
 
   public todoGroups: TodoGroup[];
 
-  constructor() {}
+  constructor( private _eventsCtrl: Events ) {}
 
   ngOnInit() {
 
@@ -103,6 +104,10 @@ export class TodoGroupComponent {
     }
 
     return this.convertObjectToMap( todoMap );
+  }
+
+  summonTodoModal() {
+      this._eventsCtrl.publish( "todo-fab:tap");
   }
 
   private convertObjectToMap( todoGroupObj ): TodoGroup[] {
